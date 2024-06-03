@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Bill Detail</h1>
+    <table class="table table-bordered mt-3">
+        <tr>
+            <th>Patient ID</th>
+            <td>{{ bill.patient_id }}</td>
+        </tr>
+        <tr>
+            <th>Total Amount</th>
+            <td>{{ bill.total_amount }}</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>{{ bill.status }}</td>
+        </tr>
+        <tr>
+            <th>Created At</th>
+            <td>{{ bill.created_at }}</td>
+        </tr>
+        <tr>
+            <th>Updated At</th>
+            <td>{{ bill.updated_at }}</td>
+        </tr>
+    </table>
+    <a href="{% url 'bill_list' %}" class="btn btn-secondary">Back to List</a>
+    <a href="{% url 'bill_edit' bill.id %}" class="btn btn-warning">Edit</a>
+    <a href="{% url 'bill_delete' bill.id %}" class="btn btn-danger">Delete</a>
+</div>
+</body>
+</html>

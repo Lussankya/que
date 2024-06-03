@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Staff Detail</h1>
+    <table class="table table-bordered mt-3">
+        <tr>
+            <th>First Name</th>
+            <td>{{ staff_member.first_name }}</td>
+        </tr>
+        <tr>
+            <th>Last Name</th>
+            <td>{{ staff_member.last_name }}</td>
+        </tr>
+        <tr>
+            <th>Role</th>
+            <td>{{ staff_member.role }}</td>
+        </tr>
+        <tr>
+            <th>Department</th>
+            <td>{{ staff_member.department.name }}</td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td>{{ staff_member.phone }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ staff_member.email }}</td>
+        </tr>
+        <tr>
+            <th>Employment Date</th>
+            <td>{{ staff_member.employment_date }}</td>
+        </tr>
+        <tr>
+            <th>Created At</th>
+            <td>{{ staff_member.created_at }}</td>
+        </tr>
+        <tr>
+            <th>Updated At</th>
+            <td>{{ staff_member.updated_at }}</td>
+        </tr>
+    </table>
+    <a href="{% url 'staff_list' %}" class="btn btn-secondary">Back to List</a>
+    <a href="{% url 'staff_update' staff_member.id %}" class="btn btn-warning">Edit</a>
+    <form action="{% url 'staff_delete' staff_member.id %}" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this staff member?');">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+</div>
+</body>
+</html>

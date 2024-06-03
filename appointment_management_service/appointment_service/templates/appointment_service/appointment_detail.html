@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Appointment Details</h1>
+    <table class="table table-bordered">
+        <tr>
+            <th>Patient</th>
+            <td>{{ appointment.patient_id }}</td>
+        </tr>
+        <tr>
+            <th>Doctor</th>
+            <td>{{ appointment.doctor_id }}</td>
+        </tr>
+        <tr>
+            <th>Appointment Date</th>
+            <td>{{ appointment.appointment_date }}</td>
+        </tr>
+        <tr>
+            <th>Appointment Time</th>
+            <td>{{ appointment.appointment_time }}</td>
+        </tr>
+        <tr>
+            <th>Type</th>
+            <td>{{ appointment.appointment_type }}</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>{{ appointment.status }}</td>
+        </tr>
+        <tr>
+            <th>Created At</th>
+            <td>{{ appointment.created_at }}</td>
+        </tr>
+        <tr>
+            <th>Updated At</th>
+            <td>{{ appointment.updated_at }}</td>
+        </tr>
+    </table>
+    <a href="{% url 'appointment_list' %}" class="btn btn-secondary">Back to List</a>
+</div>
+</body>
+</html>

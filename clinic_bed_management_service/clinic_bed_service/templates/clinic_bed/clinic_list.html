@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Clinic List</h1>
+    <a href="{% url 'clinic_create' %}" class="btn btn-primary mb-3">Add New Clinic</a>
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for clinic in clinics %}
+                <tr>
+                    <td>{{ clinic.name }}</td>
+                    <td>{{ clinic.location }}</td>
+                    <td>{{ clinic.phone }}</td>
+                    <td>
+                        <a href="{% url 'clinic_detail' clinic.id %}" class="btn btn-info btn-sm">View</a>
+                        <a href="{% url 'clinic_edit' clinic.id %}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{% url 'clinic_delete' clinic.id %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

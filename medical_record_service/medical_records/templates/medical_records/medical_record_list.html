@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Records List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Medical Records List</h1>
+    <a href="{% url 'medical_record_create' %}" class="btn btn-primary mb-3">Add New Medical Record</a>
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th>Record Date</th>
+            <th>Patient ID</th>
+            <th>Doctor ID</th>
+            <th>Diagnosis</th>
+            <th>Treatment</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for record in records %}
+        <tr>
+            <td>{{ record.record_date }}</td>
+            <td>{{ record.patient_id }}</td>
+            <td>{{ record.doctor_id }}</td>
+            <td>{{ record.diagnosis_id.name }}</td>
+            <td>{{ record.treatment_id.name }}</td>
+            <td>
+                <a href="{% url 'medical_record_detail' record.id %}" class="btn btn-info btn-sm">View</a>
+                <a href="{% url 'medical_record_update' record.id %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'medical_record_delete' record.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

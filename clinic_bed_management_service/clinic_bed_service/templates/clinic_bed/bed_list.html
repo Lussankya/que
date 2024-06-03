@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bed List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Bed List</h1>
+    <a href="{% url 'bed_create' %}" class="btn btn-primary mb-3">Add New Bed</a>
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Clinic</th>
+                <th>Bed Number</th>
+                <th>Status</th>
+                <th>Patient ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bed in beds %}
+                <tr>
+                    <td>{{ bed.clinic.name }}</td>
+                    <td>{{ bed.bed_number }}</td>
+                    <td>{{ bed.status }}</td>
+                    <td>{{ bed.patient_id }}</td>
+                    <td>
+                        <a href="{% url 'bed_detail' bed.id %}" class="btn btn-info btn-sm">View</a>
+                        <a href="{% url 'bed_edit' bed.id %}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{% url 'bed_delete' bed.id %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

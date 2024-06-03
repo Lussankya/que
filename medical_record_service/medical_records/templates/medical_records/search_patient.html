@@ -1,0 +1,5 @@
+{% for patient in patients %}
+<div class="patient-result" data-id="{{ patient.id }}">
+    {{ patient.first_name }} {{ patient.last_name }}
+</div>
+{% endfor %}

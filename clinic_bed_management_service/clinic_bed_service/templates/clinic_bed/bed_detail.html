@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bed Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Bed Detail</h1>
+    <table class="table table-bordered mt-3">
+        <tr>
+            <th>Clinic</th>
+            <td>{{ bed.clinic.name }}</td>
+        </tr>
+        <tr>
+            <th>Bed Number</th>
+            <td>{{ bed.bed_number }}</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>{{ bed.status }}</td>
+        </tr>
+        <tr>
+            <th>Patient ID</th>
+            <td>{{ bed.patient_id }}</td>
+        </tr>
+        <tr>
+            <th>Created At</th>
+            <td>{{ bed.created_at }}</td>
+        </tr>
+        <tr>
+            <th>Updated At</th>
+            <td>{{ bed.updated_at }}</td>
+        </tr>
+    </table>
+    <a href="{% url 'bed_list' %}" class="btn btn-secondary">Back to List</a>
+    <a href="{% url 'bed_edit' bed.id %}" class="btn btn-warning">Edit</a>
+    <a href="{% url 'bed_delete' bed.id %}" class="btn btn-danger">Delete</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Patient Detail</h1>
+    <p><strong>First Name:</strong> {{ patient.first_name }}</p>
+    <p><strong>Last Name:</strong> {{ patient.last_name }}</p>
+    <p><strong>Date of Birth:</strong> {{ patient.date_of_birth }}</p>
+    <p><strong>Gender:</strong> {{ patient.gender }}</p>
+    <p><strong>Phone:</strong> {{ patient.phone }}</p>
+    <p><strong>Email:</strong> {{ patient.email }}</p>
+    <p><strong>Emergency Contact Name:</strong> {{ patient.emergency_contact_name }}</p>
+    <p><strong>Emergency Contact Phone:</strong> {{ patient.emergency_contact_phone }}</p>
+    <p><strong>Insurance Provider:</strong> {{ patient.insurance.provider }}</p>
+    <p><strong>Policy Number:</strong> {{ patient.insurance.policy_number }}</p>
+    <p><strong>Coverage Details:</strong> {{ patient.insurance.coverage_details }}</p>
+    <p><strong>Address:</strong> {{ patient.address.street }}, {{ patient.address.city }}, {{ patient.address.state }}, {{ patient.address.zip_code }}, {{ patient.address.country }}</p>
+    <a href="{% url 'patient_list' %}" class="btn btn-primary">Back to List</a>
+</div>
+</body>
+</html>

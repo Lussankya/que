@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Inventory Detail</h1>
+    <table class="table table-bordered mt-3">
+        <tr>
+            <th>Name</th>
+            <td>{{ inventory.name }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ inventory.description }}</td>
+        </tr>
+        <tr>
+            <th>Quantity</th>
+            <td>{{ inventory.quantity }}</td>
+        </tr>
+        <tr>
+            <th>Unit</th>
+            <td>{{ inventory.unit }}</td>
+        </tr>
+        <tr>
+            <th>Supplier</th>
+            <td>{{ inventory.supplier.name }}</td>
+        </tr>
+        <tr>
+            <th>Expiry Date</th>
+            <td>{{ inventory.expiry_date }}</td>
+        </tr>
+        <tr>
+            <th>Created At</th>
+            <td>{{ inventory.created_at }}</td>
+        </tr>
+        <tr>
+            <th>Updated At</th>
+            <td>{{ inventory.updated_at }}</td>
+        </tr>
+    </table>
+    <a href="{% url 'inventory_list' %}" class="btn btn-secondary">Back to List</a>
+    <a href="{% url 'inventory_update' inventory.id %}" class="btn btn-warning">Edit</a>
+    <form action="{% url 'inventory_delete' inventory.id %}" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this inventory?');">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+</div>
+</body>
+</html>

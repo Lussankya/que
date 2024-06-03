@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specialty List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Specialty List</h1>
+    <a href="{% url 'specialty_create' %}" class="btn btn-primary mb-3">Add New Specialty</a>
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for specialty in specialties %}
+        <tr>
+            <td>{{ specialty.name }}</td>
+            <td>{{ specialty.description }}</td>
+            <td>
+                <a href="{% url 'specialty_detail' specialty.id %}" class="btn btn-info btn-sm">View</a>
+                <a href="{% url 'specialty_update' specialty.id %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'specialty_delete' specialty.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

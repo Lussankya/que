@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Doctor Details</h1>
+    <table class="table table-bordered">
+        <tr>
+            <th>First Name</th>
+            <td>{{ doctor.first_name }}</td>
+        </tr>
+        <tr>
+            <th>Last Name</th>
+            <td>{{ doctor.last_name }}</td>
+        </tr>
+        <tr>
+            <th>Specialty</th>
+            <td>{{ doctor.specialty.name }}</td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td>{{ doctor.phone }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ doctor.email }}</td>
+        </tr>
+        <tr>
+            <th>Department</th>
+            <td>{{ doctor.department }}</td>
+        </tr>
+    </table>
+    <h2 class="mt-4">Doctor Licenses</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>License Number</th>
+            <th>License Type</th>
+            <th>Issued By</th>
+            <th>Issue Date</th>
+            <th>Expiry Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for license in doctor.doctorlicense_set.all %}
+        <tr>
+            <td>{{ license.license_number }}</td>
+            <td>{{ license.license_type }}</td>
+            <td>{{ license.issued_by }}</td>
+            <td>{{ license.issue_date }}</td>
+            <td>{{ license.expiry_date }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'doctor_list' %}" class="btn btn-secondary">Back to List</a>
+</div>
+</body>
+</html>

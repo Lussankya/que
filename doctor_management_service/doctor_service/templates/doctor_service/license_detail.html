@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>License Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">License Details</h1>
+    <table class="table table-bordered">
+        <tr>
+            <th>License Number</th>
+            <td>{{ license.license_number }}</td>
+        </tr>
+        <tr>
+            <th>License Type</th>
+            <td>{{ license.license_type }}</td>
+        </tr>
+        <tr>
+            <th>Issued By</th>
+            <td>{{ license.issued_by }}</td>
+        </tr>
+        <tr>
+            <th>Issue Date</th>
+            <td>{{ license.issue_date }}</td>
+        </tr>
+        <tr>
+            <th>Expiry Date</th>
+            <td>{{ license.expiry_date }}</td>
+        </tr>
+    </table>
+    <a href="{% url 'license_list' %}" class="btn btn-secondary">Back to List</a>
+</div>
+</body>
+</html>

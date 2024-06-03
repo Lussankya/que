@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Payment Detail</h1>
+    <table class="table table-bordered mt-3">
+        <tr>
+            <th>Bill ID</th>
+            <td>{{ payment.bill_id }}</td>
+        </tr>
+        <tr>
+            <th>Payment Date</th>
+            <td>{{ payment.payment_date }}</td>
+        </tr>
+        <tr>
+            <th>Amount</th>
+            <td>{{ payment.amount }}</td>
+        </tr>
+        <tr>
+            <th>Payment Method</th>
+            <td>{{ payment.payment_method }}</td>
+        </tr>
+        <tr>
+            <th>Created At</th>
+            <td>{{ payment.created_at }}</td>
+        </tr>
+        <tr>
+            <th>Updated At</th>
+            <td>{{ payment.updated_at }}</td>
+        </tr>
+    </table>
+    <a href="{% url 'payment_list' %}" class="btn btn-secondary">Back to List</a>
+    <a href="{% url 'payment_edit' payment.id %}" class="btn btn-warning">Edit</a>
+    <a href="{% url 'payment_delete' payment.id %}" class="btn btn-danger">Delete</a>
+</div>
+</body>
+</html>

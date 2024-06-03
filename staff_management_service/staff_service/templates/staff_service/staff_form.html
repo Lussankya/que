@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ form.instance.id|yesno:"Edit Staff Member,Add New Staff Member" }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">{{ form.instance.id|yesno:"Edit Staff Member,Add New Staff Member" }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="form-group">
+            {{ form.first_name.label_tag }}
+            {{ form.first_name }}
+        </div>
+        <div class="form-group">
+            {{ form.last_name.label_tag }}
+            {{ form.last_name }}
+        </div>
+        <div class="form-group">
+            {{ form.role.label_tag }}
+            {{ form.role }}
+        </div>
+        <div class="form-group">
+            {{ form.department.label_tag }}
+            <select name="department" id="id_department" class="form-control">
+                <option value="">---------</option>
+                {% for department in departments %}
+                    <option value="{{ department.id }}" {% if form.instance.department.id == department.id %}selected{% endif %}>{{ department.name }}</option>
+                {% endfor %}
+            </select>
+            <a href="{% url 'department_create' %}" class="btn btn-link">Add New Department</a>
+        </div>
+        <div class="form-group">
+            {{ form.phone.label_tag }}
+            {{ form.phone }}
+        </div>
+        <div class="form-group">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+        </div>
+        <div class="form-group">
+            {{ form.employment_date.label_tag }}
+            <input type="date" name="employment_date" id="id_employment_date" class="form-control" value="{{ form.instance.employment_date|date:"Y-m-d" }}">
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="{% url 'staff_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+</body>
+</html>

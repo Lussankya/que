@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Department Detail</h1>
+    <table class="table table-bordered mt-3">
+        <tr>
+            <th>Name</th>
+            <td>{{ department.name }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ department.description }}</td>
+        </tr>
+        <tr>
+            <th>Created At</th>
+            <td>{{ department.created_at }}</td>
+        </tr>
+        <tr>
+            <th>Updated At</th>
+            <td>{{ department.updated_at }}</td>
+        </tr>
+    </table>
+    <a href="{% url 'department_list' %}" class="btn btn-secondary">Back to List</a>
+    <a href="{% url 'department_update' department.id %}" class="btn btn-warning">Edit</a>
+    <form action="{% url 'department_delete' department.id %}" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this department?');">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+</div>
+</body>
+</html>

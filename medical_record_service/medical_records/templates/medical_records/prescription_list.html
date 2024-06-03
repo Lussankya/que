@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prescription List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Prescription List</h1>
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th>Medical Record</th>
+            <th>Medication</th>
+            <th>Dosage</th>
+            <th>Frequency</th>
+            <th>Duration</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for prescription in prescriptions %}
+        <tr>
+            <td>{{ prescription.medical_record_id }}</td>
+            <td>{{ prescription.medication_id }}</td>
+            <td>{{ prescription.dosage }}</td>
+            <td>{{ prescription.frequency }}</td>
+            <td>{{ prescription.duration }}</td>
+            <td>
+                <a href="{% url 'prescription_detail' prescription.id %}" class="btn btn-info btn-sm">View</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

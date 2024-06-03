@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Record Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Medical Record Detail</h1>
+    <p><strong>Record Date:</strong> {{ record.record_date }}</p>
+    <p><strong>Patient ID:</strong> {{ record.patient_id }}</p>
+    <p><strong>Doctor ID:</strong> {{ record.doctor_id }}</p>
+    <p><strong>Diagnosis:</strong> {{ record.diagnosis_id.name }}</p>
+    <p><strong>Treatment:</strong> {{ record.treatment_id.name }}</p>
+    <p><strong>Notes:</strong> {{ record.notes }}</p>
+    <a href="{% url 'medical_record_list' %}" class="btn btn-primary">Back to List</a>
+</div>
+</body>
+</html>

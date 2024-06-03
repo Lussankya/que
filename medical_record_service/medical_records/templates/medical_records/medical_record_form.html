@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ form.instance.id|yesno:"Edit Medical Record,Add New Medical Record" }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">{{ form.instance.id|yesno:"Edit Medical Record,Add New Medical Record" }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div class="form-group">
+            {{ form.record_date.label_tag }}
+            {{ form.record_date }}
+        </div>
+
+        <div class="form-group">
+            <label for="search_patient">Search Patient</label>
+            <input type="text" id="search_patient" name="search_patient" class="form-control">
+            <div id="patient_results"></div>
+        </div>
+
+        <div class="form-group">
+            {{ form.patient.label_tag }}
+            {{ form.patient }}
+            <input type="hidden" id="id_patient_id" name="patient_id" value="{{ form.instance.patient_id }}">
+        </div>
+
+        <div class="form-group">
+            {{ form.doctor_id.label_tag }}
+            <select name="doctor_id" id="id_doctor_id" class="form-control">
+                <option value="">---------</option>
+                {% for doctor in doctors %}
+                    <option value="{{ doctor.id }}">{{ doctor.first_name }} {{ doctor.last_name }}</option>
+                {% endfor %}
+            </select>
+            {% if not doctors %}
+                <div class="alert alert-warning mt-2">No doctors available. Please add doctors first.</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.diagnosis_id.label_tag }}
+            {{ form.diagnosis_id }}
+            <a href="{% url 'create_diagnosis' %}" class="btn btn-link">Add New Diagnosis</a>
+        </div>
+
+        <div class="form-group">
+            {{ form.treatment_id.label_tag }}
+            {{ form.treatment_id }}
+            <a href="{% url 'create_treatment' %}" class="btn btn-link">Add New Treatment</a>
+        </div>
+
+        <div class="form-group">
+            {{ form.notes.label_tag }}
+            {{ form.notes }}
+        </div>
+
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="{% url 'medical_record_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+<script>
+    document.getElementById('search_patient').addEventListener('input', function() {
+        fetch(`/api/medical-records/search_patient/?q=${this.value}`)
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('patient_results').innerHTML = html;
+                document.querySelectorAll('.patient-result').forEach(item => {
+                    item.addEventListener('click', function() {
+                        document.getElementById('id_patient_id').value = this.getAttribute('data-id');
+                        document.getElementById('search_patient').value = this.textContent.trim();
+                        document.getElementById('patient_results').innerHTML = '';
+                    });
+                });
+            });
+    });
+</script>
+</body>
+</html>
